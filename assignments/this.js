@@ -36,13 +36,26 @@ function Computer(make, model, price){
     this.make = make,
     this.model = model,
     this.price = price
+    this.getInfo = function() {
+        console.log(`You've chosen a ${this.make} ${this.model}. The price is ${this.price}.`)
+    }
 }
-const macBookPro = new Computer('Apple', 'MacBook Pro', '$1500')
-console.log(macBookPro);
+const macBookPro = new Computer('Apple','MacBook Pro','$1500')
+console.log(macBookPro.getInfo());
 
 // code example for New Binding
 
 // Principle 4
+
+function trainSchedule(){
+    console.log(`${this.train} arriving in ${this.time} minutes`)
+}
+const neCorridor = {
+    train: 'Northeast Corridor',
+    time: 5
+}
+
+trainSchedule.call(neCorridor); // hey function, call this specific object and run it
 
 // code example for Explicit Binding
 
