@@ -52,28 +52,32 @@ GameObject.prototype.destroy = function() {
 
 
 function CharacterStats(stats) {
-  GameObject.call(this, stats);
+  GameObject.call(this, stats); 
   this.healthPoints = stats.healthPoints;
 };
+
+CharacterStats.prototype = Object.create(GameObject.prototype);
+
 
 CharacterStats.prototype.takeDamage = function() {
   return `${this.name} took damage.`;
 };
 
 
-//Test GameObject
-const harryPotter = new GameObject({
-  createdAt: 20,
-  name: 'Harry Potter',
-  dimensions: {
-    length: 2,
-    width: 1,
-    height: 1,
-  },
-  healthPoints: 4
-});
+function Humanoid(humanoidAttributes){
+  CharacterStats.call(this, humanoidAttributes);
+  this.team = humanoidAttributes.team;
+  this.weapons = humanoidAttributes.weapons;
+  this.language = humanoidAttributes.language;
+}
+Humanoid.prototype = Object.create(CharacterStats.prototype)
 
-console.log(harryPotter.takeDamage())
+Humanoid.prototype.greet = function() {
+  return `${this.name} offers a greeting in ${this.language}.`
+}
+
+
+
 
 
 
@@ -84,7 +88,6 @@ console.log(harryPotter.takeDamage())
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
@@ -145,9 +148,22 @@ console.log(harryPotter.takeDamage())
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-*/
+
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  //Test GameObject
+// const harryPotter = new CharacterStats({
+//   createdAt: 20,
+//   name: 'Harry Potter',
+//   dimensions: {
+//     length: 2,
+//     width: 1,
+//     height: 1,
+//   },
+//   healthPoints: 4
+// });
+
