@@ -39,6 +39,49 @@
   * Instances of CharacterStats should have all of the same properties as GameObject.
 */
 
+//create GameObject
+function GameObject(character){
+  this.createdAt = character.createdAt;
+  this.name = character.name;
+  this.dimensions = character.dimensions;
+};
+
+GameObject.prototype.destroy = function() {
+  return `${this.name} was removed from the game.`;
+};
+
+
+function CharacterStats(stats) {
+  GameObject.call(this, stats);
+  this.healthPoints = stats.healthPoints;
+};
+
+CharacterStats.prototype.takeDamage = function() {
+  return `${this.name} took damage.`;
+};
+
+
+//Test GameObject
+const harryPotter = new GameObject({
+  createdAt: 20,
+  name: 'Harry Potter',
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 4
+});
+
+console.log(harryPotter.takeDamage())
+
+
+
+
+
+
+
+
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
 /*
